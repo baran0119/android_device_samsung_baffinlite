@@ -106,4 +106,8 @@ BOARD_SEPOLICY_DIRS += \
     device/samsung/baffinlite/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    file_contexts \
+    file_contexts
+    
+#deodex
+DISABLE_DEXPREOPT=true
+WITH_DEXPREOPT=false
