@@ -12,13 +12,13 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/baffinlite/overlay
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/init.java_ss_baffinlite.rc:root/init.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/init.baffinlite.rc:root/init.baffinlite.rc \
 	device/samsung/baffinlite/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
 	device/samsung/baffinlite/init.log.rc:root/init.log.rc \
-	device/samsung/baffinlite/init.recovery.java_ss_baffinlite.rc:root/init.recovery.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/init.recovery.baffinlite.rc:root/init.recovery.baffinlite.rc \
 	device/samsung/baffinlite/lpm.rc:root/lpm.rc \
 	device/samsung/baffinlite/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
-	device/samsung/baffinlite/recovery.fstab:root/recovery.fstab \
+	device/samsung/baffinlite/recovery.fstab:root/recovery.fstab 
 
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml \
@@ -111,7 +111,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # MTP
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp,adb
 
 # Dalvik heap config
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
@@ -121,6 +121,8 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+include device/samsung/bcm_common/alsa-lib/Android.mk
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_baffinlite

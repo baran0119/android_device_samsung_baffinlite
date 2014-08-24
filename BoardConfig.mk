@@ -31,6 +31,7 @@ TARGET_KERNEL_SOURCE := kernel/samsung/baffinlite
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 
+
 #fix fr the graphic glitch 
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
@@ -107,7 +108,7 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     file_contexts
-    
+
 #deodex
 DISABLE_DEXPREOPT=true
 WITH_DEXPREOPT=false
