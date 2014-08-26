@@ -12,23 +12,36 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/baffinlite/overlay
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/init.baffinlite.rc:root/init.baffinlite.rc \
-	device/samsung/baffinlite/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
-	device/samsung/baffinlite/init.log.rc:root/init.log.rc \
-	device/samsung/baffinlite/init.recovery.baffinlite.rc:root/init.recovery.baffinlite.rc \
-	device/samsung/baffinlite/lpm.rc:root/lpm.rc \
-	device/samsung/baffinlite/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
-	device/samsung/baffinlite/recovery.fstab:root/recovery.fstab 
+	device/samsung/baffinlite/rootdir/init.java_ss_baffinlite.rc:root/init.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/rootdir/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
+	device/samsung/baffinlite/rootdir/init.log.rc:root/init.log.rc \
+	device/samsung/baffinlite/rootdir/lpm.rc:root/lpm.rc \
+	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:recovery/root/ueventd.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/recovery/init.recovery.java_ss_baffinlite.rc:recovery/root/init.recovery.java_ss_baffinlite.rc \
+#	device/samsung/baffinlite/recovery/recovery.fstab:recovery/root/recovery.fstab \
+	device/samsung/baffinlite/recovery/etc/extra.fstab:recovery/root/etc/extra.fstab \
+	device/samsung/baffinlite/recovery/charger:recovery/root/charger \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_charge.png:recovery/root/res/images/charger/battery_charge.png \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_0.png:recovery/root/res/images/charger/battery_0.png \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_1.png:recovery/root/res/images/charger/battery_1.png \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_2.png:recovery/root/res/images/charger/battery_2.png \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_3.png:recovery/root/res/images/charger/battery_3.png \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_4.png:recovery/root/res/images/charger/battery_4.png \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_5.png:recovery/root/res/images/charger/battery_5.png \
+	device/samsung/baffinlite/recovery/res/images/charger/battery_fail.png:recovery/root/res/images/charger/battery_fail.png \
+	device/samsung/baffinlite/recovery/sbin/fsck.f2fs:recovery/root/sbin/fsck.f2fs \
+	device/samsung/baffinlite/recovery/sbin/mkfs.f2fs:recovery/root/sbin/mkfs.f2fs
 
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml \
+	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/bcm_headset.kl:system/usr/keylayout/bcm_headset.kl \
 	device/samsung/baffinlite/bcm_keypad_v2.kl:system/usr/keylayout/bcm_keypad_v2.kl \
 	device/samsung/baffinlite/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl \
+	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl
 
 
 # Filesystem management tools
@@ -48,7 +61,7 @@ PRODUCT_PACKAGES += \
 # Device-specific packages
 PRODUCT_PACKAGES += \
 	SamsungServiceMode \
-	Torch \
+	Torch
 
 # Charger
 PRODUCT_PACKAGES += \

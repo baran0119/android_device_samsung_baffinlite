@@ -25,12 +25,29 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610334208
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5767168000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := baffinlite,i9060,GT-I9006,java_ss_baffinlite
+
 # Kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_baffinlite_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/baffinlite
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 
+#Recovery PhilZ
+RECOVERY_VARIANT := philz
+#TARGET_RECOVERY_INITRC := device/samsung/baffinlite/rootdir/init.philz*.rc
+#Galaxy Grand Neo (i9060)
+TARGET_COMMON_NAME := Galaxy Grand Neo
+BOOTLOADER_CMD_ARG := "download"
+# KERNEL_EXFAT_MODULE_NAME := "exfat"
+TARGET_SCREEN_HEIGHT := 800
+TARGET_SCREEN_WIDTH := 480
+BOARD_HAS_LOW_RESOLUTION := true
+BRIGHTNESS_SYS_FILE := "/sys/class/backlight/panel/brightness"
+BOARD_USE_B_SLOT_PROTOCOL := true
+TARGET_RECOVERY_INITRC := device/samsung/baffinlite/recovery/init.rc
+BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 
 #fix fr the graphic glitch 
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
@@ -90,7 +107,7 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charg
 BOARD_RIL_CLASS := ../../../device/samsung/baffinlite/ril/
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/baffinlite/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/samsung/baffinlite/recovery/recovery.fstab
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 
 # healthd
@@ -103,12 +120,15 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/baffinlite/cmhw/
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/baffinlite/include
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/baffinlite/sepolicy
+include vendor/cm/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_UNION += \
-    file_contexts
+#BOARD_SEPOLICY_DIRS += \
+#    device/samsung/baffinlite/sepolicy
+
+#BOARD_SEPOLICY_UNION += \
+#    file_contexts
 
 #deodex
 DISABLE_DEXPREOPT=true
 WITH_DEXPREOPT=false
+

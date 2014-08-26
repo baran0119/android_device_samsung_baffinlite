@@ -1,15 +1,6 @@
 on early-init
     start ueventd
 
-on init-recovery
-    mount /system
-    unmount /cache
-    exec -f "/system/bin/e2fsck -v -y /dev/block/mmcblk0p16"
-    
-    mount /cache
-    ls /cache/recovery/
-    unmount /system
-
 on init
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     export ANDROID_ROOT /system

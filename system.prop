@@ -1,7 +1,6 @@
 #
 # system.prop for i9060
 #
-ro.hardware=baffinlite
 
 persist.brcm.log=none
 persist.brcm.cp_crash=none
