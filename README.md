@@ -1,5 +1,4 @@
-android_device_samsung_i9082
-============================
+android_device_samsung_baffinlite
+=================================
 
-Android device tree for Samsung Galaxy Grand Duos (GT-I9082)
-GRAND NEO DEVICE TREE 
+Android device tree for Samsung Galaxy Grand Neo (GT-I9060)
