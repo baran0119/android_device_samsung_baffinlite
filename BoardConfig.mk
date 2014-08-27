@@ -13,31 +13,36 @@ TARGET_CPU_VARIANT := cortex-a7
 
 TARGET_BOOTLOADER_BOARD_NAME := java
 
-BOARD_KERNEL_CMDLINE := 
+BOARD_KERNEL_CMDLINE := console=ttyS0,115200n8 mem=456M gpt v3d_mem=67108864 pmem=24M@0x9E800000 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x81e00000
 BOARD_KERNEL_PAGESIZE := 4096
 
 TARGET_USERIMAGES_USE_EXT4 := true
-
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_SETS_FSTAB := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610334208
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5767168000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
+# Use GCC 4.8 toolchain
+# TARGET_GCC_VERSION_EXP := 4.8-sm-kk-mr1
+# TARGET_GCC_VERSION_EXP := 4.7-linaro
+
 # Assert
-TARGET_OTA_ASSERT_DEVICE := baffinlite,i9060,GT-I9006,java_ss_baffinlite
+TARGET_OTA_ASSERT_DEVICE := baffinlite,i9060,GT-I9060,GT-I9060L,java_ss_baffinlite
 
 # Kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_baffinlite_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/baffinlite
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN=arm-eabi-4.8
 
 #Recovery PhilZ
 RECOVERY_VARIANT := philz
 #TARGET_RECOVERY_INITRC := device/samsung/baffinlite/rootdir/init.philz*.rc
-#Galaxy Grand Neo (i9060)
 TARGET_COMMON_NAME := Galaxy Grand Neo
 BOOTLOADER_CMD_ARG := "download"
 # KERNEL_EXFAT_MODULE_NAME := "exfat"
@@ -107,7 +112,7 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charg
 BOARD_RIL_CLASS := ../../../device/samsung/baffinlite/ril/
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/baffinlite/recovery/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/samsung/baffinlite/recovery/etc/recovery.fstab
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 
 # healthd
@@ -119,14 +124,15 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/baffinlite/cmhw/
 # GPS
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/baffinlite/include
 
+# BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
+
 # SELinux
-include vendor/cm/sepolicy/sepolicy.mk
 
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/baffinlite/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/baffinlite/sepolicy
 
-#BOARD_SEPOLICY_UNION += \
-#    file_contexts
+BOARD_SEPOLICY_UNION += \
+	file_contexts
 
 #deodex
 DISABLE_DEXPREOPT=true

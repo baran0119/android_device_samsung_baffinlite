@@ -19,19 +19,17 @@ PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:recovery/root/ueventd.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/recovery/init.recovery.java_ss_baffinlite.rc:recovery/root/init.recovery.java_ss_baffinlite.rc \
-#	device/samsung/baffinlite/recovery/recovery.fstab:recovery/root/recovery.fstab \
-	device/samsung/baffinlite/recovery/etc/extra.fstab:recovery/root/etc/extra.fstab \
-	device/samsung/baffinlite/recovery/charger:recovery/root/charger \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_charge.png:recovery/root/res/images/charger/battery_charge.png \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_0.png:recovery/root/res/images/charger/battery_0.png \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_1.png:recovery/root/res/images/charger/battery_1.png \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_2.png:recovery/root/res/images/charger/battery_2.png \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_3.png:recovery/root/res/images/charger/battery_3.png \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_4.png:recovery/root/res/images/charger/battery_4.png \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_5.png:recovery/root/res/images/charger/battery_5.png \
-	device/samsung/baffinlite/recovery/res/images/charger/battery_fail.png:recovery/root/res/images/charger/battery_fail.png \
-	device/samsung/baffinlite/recovery/sbin/fsck.f2fs:recovery/root/sbin/fsck.f2fs \
-	device/samsung/baffinlite/recovery/sbin/mkfs.f2fs:recovery/root/sbin/mkfs.f2fs
+	device/samsung/baffinlite/recovery/etc/extra.fstab:recovery/root/etc/extra.fstab
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_charge.png:recovery/root/res/images/charger/battery_charge.png \
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_0.png:recovery/root/res/images/charger/battery_0.png \
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_1.png:recovery/root/res/images/charger/battery_1.png \
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_2.png:recovery/root/res/images/charger/battery_2.png \
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_3.png:recovery/root/res/images/charger/battery_3.png \
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_4.png:recovery/root/res/images/charger/battery_4.png \
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_5.png:recovery/root/res/images/charger/battery_5.png \
+	# device/samsung/baffinlite/recovery/res/images/charger/battery_fail.png:recovery/root/res/images/charger/battery_fail.png \
+#	device/samsung/baffinlite/recovery/sbin/fsck.f2fs:recovery/root/sbin/fsck.f2fs \
+#	device/samsung/baffinlite/recovery/sbin/mkfs.f2fs:recovery/root/sbin/mkfs.f2fs
 
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml
@@ -47,6 +45,13 @@ PRODUCT_COPY_FILES += \
 # Filesystem management tools
 PRODUCT_PACKAGES += \
 	setup_fs
+
+# F2FS filesystem
+PRODUCT_PACKAGES += \
+    mkfs.f2fs \
+    fsck.f2fs \
+    fibmap.f2fs \
+    f2fstat
 
 # Usb accessory
 PRODUCT_PACKAGES += \
@@ -89,11 +94,15 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+	persist.service.adb.enable=1
+	
 # Support for Browser's saved page feature. This allows
 # for pages saved on previous versions of the OS to be
 # viewed on the current OS.
-PRODUCT_PACKAGES += \
-    libskia_legacy
+# PRODUCT_PACKAGES += \
+#     libskia_legacy
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
@@ -104,15 +113,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungBCMRIL \
     ro.zygote.disable_gl_preload=true \
     ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
-    persist.radio.multisim.config=dsds \
     ro.telephony.call_ring.multiple=0 \
     ro.telephony.call_ring=0 \
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=1 \
-    ro.com.google.networklocation=1
+    ro.com.google.locationfeatures=0 \
+    ro.com.google.networklocation=0
 
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
@@ -122,9 +130,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
     dalvik.vm.checkjni=false
 
+# KSM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ksm.default=1
+
 # MTP
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp,adb
+    persist.sys.usb.config=mtp
 
 # Dalvik heap config
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
