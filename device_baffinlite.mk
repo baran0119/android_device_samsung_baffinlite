@@ -12,24 +12,16 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/baffinlite/overlay
 
 # Init files
 PRODUCT_COPY_FILES += \
+	device/samsung/baffinlite/recovery.fstab:root/fstab.java_ss_baffinlite \
 	device/samsung/baffinlite/rootdir/init.java_ss_baffinlite.rc:root/init.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/rootdir/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
 	device/samsung/baffinlite/rootdir/init.log.rc:root/init.log.rc \
+	device/samsung/baffinlite/rootdir/init.rc:root/init.rc \
 	device/samsung/baffinlite/rootdir/lpm.rc:root/lpm.rc \
 	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:recovery/root/ueventd.java_ss_baffinlite.rc \
-	device/samsung/baffinlite/recovery/init.recovery.java_ss_baffinlite.rc:recovery/root/init.recovery.java_ss_baffinlite.rc \
+#	device/samsung/baffinlite/recovery/init.recovery.java_ss_baffinlite.rc:recovery/root/init.recovery.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/recovery/etc/extra.fstab:recovery/root/etc/extra.fstab
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_charge.png:recovery/root/res/images/charger/battery_charge.png \
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_0.png:recovery/root/res/images/charger/battery_0.png \
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_1.png:recovery/root/res/images/charger/battery_1.png \
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_2.png:recovery/root/res/images/charger/battery_2.png \
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_3.png:recovery/root/res/images/charger/battery_3.png \
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_4.png:recovery/root/res/images/charger/battery_4.png \
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_5.png:recovery/root/res/images/charger/battery_5.png \
-	# device/samsung/baffinlite/recovery/res/images/charger/battery_fail.png:recovery/root/res/images/charger/battery_fail.png \
-#	device/samsung/baffinlite/recovery/sbin/fsck.f2fs:recovery/root/sbin/fsck.f2fs \
-#	device/samsung/baffinlite/recovery/sbin/mkfs.f2fs:recovery/root/sbin/mkfs.f2fs
 
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml
@@ -96,7 +88,10 @@ PRODUCT_COPY_FILES += \
 
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
-	persist.service.adb.enable=1
+	persist.service.adb.enable=1 \
+	persist.brcm.log=auto \
+	persist.brcm.cp_crash=auto \
+	persist.brcm.ap_crash=auto
 	
 # Support for Browser's saved page feature. This allows
 # for pages saved on previous versions of the OS to be

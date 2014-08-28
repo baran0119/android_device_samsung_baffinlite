@@ -5,8 +5,8 @@
 # makes it possible to partition vold managed storage (sdcard/usb disks) and format it to ext2/ext3
 # used also to stat for size of mtd/yaffs2 partitions
 
-/dev/block/mmcblk0p17 	/system 	f2fs 	ro,discard,nosuid,nodev,noatime,nodiratime,inline_xattr 	wait
-/dev/block/mmcblk0p16 	/cache 		f2fs 	rw,discard,nosuid,nodev,noatime,nodiratime,inline_xattr 	wait,check
+#/dev/block/mmcblk0p17 	/system 	f2fs 	rw,discard,nosuid,nodev,noatime,nodiratime,inline_xattr 	wait
+#/dev/block/mmcblk0p16 	/cache 		f2fs 	rw,discard,nosuid,nodev,noatime,nodiratime,inline_xattr 	wait,check
 /dev/block/mmcblk0p19 	/data 		f2fs 	rw,discard,nosuid,nodev,noatime,nodiratime,inline_xattr 	wait,check,encryptable=footer,length=-16384
 
 #external sd card from vold.fstab

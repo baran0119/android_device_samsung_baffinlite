@@ -22,6 +22,8 @@
 # for Camera
 /dev/bcm_unicam           0660   system     camera
 /dev/bcm_isp              0660   system     camera
+/dev/bcm_isp2             0660   system     camera
+/dev/bcm_jpeg             0660   system     camera
 /dev/i2c-0                0660   system     camera
 /dev/i2c-1                0660   system     camera
 /dev/i2c-2                0660   system     camera
@@ -36,6 +38,9 @@
 #for VCE
 /dev/vce                  0660   system     graphics
 
+#SIM lock and read IMEI
+/dev/bcm_security         0660   radio      root
+
 # sensors
 /dev/mpu                  0666   system     system
 /dev/mpuirq               0666   system     system
@@ -44,9 +49,13 @@
 
 # for Java
 /dev/mm_v3d               0666   system     graphics
-/dev/mm_isp               0660   system     camera
+/dev/mm_isp               0666   system     camera
+/dev/mm_isp2              0666   system     camera
 /dev/mm_interlock         0666   system     graphics
 /dev/mm_h264              0660   media      media
+
+# for Audio TinyALSA VoIP
+/dev/bcm_voip_chrdev      0777   system     system
 
 # for h/w codec
 /dev/brcm_h264	          0660   media      media
@@ -54,6 +63,20 @@
 
 #Permission for NV partition 
 /dev/block/mmcblk0p1		0770	radio	system
+# for RIL to be able to open Kernel RPC drivers
+/dev/bcm_rpc		  0660	 radio	    radio
+/dev/bcm_irpc		  0660	 radio	    radio
+/dev/bcm_atc		  0660	 shell	    system
+
+# for device node
+/dev/bcm_log		  0660	 system	    system
+/dev/bcm_audio_log	  0660	 system	    system
+
+/dev/block/mmcblk0	  0660 	 system     root
+/dev/mem		  0660	 system     root
+
+/dev/ttyGS0		  0660	 shell 	    system
+/dev/snd/controlC0	  0777	 system	    system
 
 # SEC User Dump
 # /dev/sec_user_dump        0660   system     shell  
