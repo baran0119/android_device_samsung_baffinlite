@@ -1,11 +1,18 @@
-# mount point	fstype		device					device2
-/efs			ext4		/dev/block/mmcblk0p17
-/boot			emmc		/dev/block/mmcblk0p5
-/recovery		emmc		/dev/block/mmcblk0p6
-/cache			ext4		/dev/block/mmcblk0p18
-/system			ext4		/dev/block/mmcblk0p19
-/data			ext4		/dev/block/mmcblk0p21	length=-16384
-/preload		ext4		/dev/block/mmcblk0p20
-/sdcard         datamedia   /dev/null
-/external_sd	vfat		/dev/block/mmcblk1p1	/dev/block/mmcblk1
-/modem			emmc		/dev/block/mmcblk0p7
+#   <src>                 			<mnt_point>	<type> 	<mnt_flags and options> 	<fs_mgr_flags>
+/dev/block/platform/sdhci.1/by-name/KERNEL 	/boot 		emmc 	defaults 			defaults
+/dev/block/platform/sdhci.1/by-name/RECOVERY 	/recovery 	emmc 	defaults 			defaults
+/dev/block/platform/sdhci.1/by-name/modem 	/modem 		emmc 	defaults 			defaults
+/dev/block/platform/sdhci.1/by-name/HIDDEN 	/preload 	ext4 	defaults 			defaults
+/dev/block/platform/sdhci.1/by-name/system 	/system 	ext4 	ro,barrier=1,errors=panic 	wait
+/dev/block/platform/sdhci.1/by-name/efs 	/efs 		ext4   nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic 		wait,check
+/dev/block/platform/sdhci.1/by-name/CSC 	/cache 		ext4   nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic 		wait,check
+
+# data partition must be located at the bottom for supporting device encryption
+/dev/block/platform/sdhci.1/by-name/userdata 	/data 		ext4   nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic 		wait,check,encryptable=footer
+
+#sdcard
+/dev/block/mmcblk1p1 				/external_sd 	auto 	defaults 			defaults
+/dev/block/mmcblk1p2 				/sd-ext 	auto 	defaults 			defaults
+
+#/devices/platform/sdhci.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0 	auto 	auto 	defaults noemulatedsd,nonremovable,voldmanaged=sdcard0:auto
+/devices/platform/dwc_otg/usb1			auto 		auto 	defaults 			voldmanaged=usbdisk:auto

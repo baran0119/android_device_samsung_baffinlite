@@ -1,6 +1,7 @@
 #
-# system.prop for i9082
+# system.prop for i9060
 #
+
 persist.brcm.log=none
 persist.brcm.cp_crash=none
 persist.brcm.ap_crash=none
@@ -8,7 +9,7 @@ persist.brcm.ap_crash=none
 rild.libpath=/system/lib/libbrcm_ril.so
 #rild.libargs=-d /dev/ttyS0
 ro.sf.lcd_density=240
-ro.lcd_brightness=123
+ro.lcd_brightness=160
 ro.lcd_min_brightness=20
 
 # MultiTouch support
@@ -20,7 +21,7 @@ ro.product.max_num_touch=2
 service.brcm.fm.start_snr=41
 service.brcm.fm.stop_snr=20
 
-ro.tvout.enable=true
+ro.tvout.enable=false
 
 net.streaming.rtsp.uaprof=http://wap.samsungmobile.com/uaprof/
 
@@ -32,9 +33,6 @@ debug.hwui.render_dirty_regions=false
 brcm.graphics.async_errors=true
 brcm.hwc.no-hdmi-trans=1
 
-ro.ril.hsxpa=1
+ro.ril.hsxpa=2
 ro.ril.gprsclass=10
 ro.com.google.gmsversion=4.1_r4
-
-# TODO - and no default APN?
-persist.sys.dataprefer.simid=0
