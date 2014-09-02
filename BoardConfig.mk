@@ -125,7 +125,7 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/baffinlite/include
 
 #libasound_module_pcm_bcmfilter
 BOARD_USES_ALSA_AUDIO := true
-
+BRCM_ALSA_LIB_DIR := device/samsung/bcm_common/alsa-lib
 # BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 
 # SELinux
