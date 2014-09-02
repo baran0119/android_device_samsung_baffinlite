@@ -1,4 +1,4 @@
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB 					:= true
 
 # inherit from the proprietary version
 -include vendor/samsung/baffinlite/BoardConfigVendor.mk
@@ -101,15 +101,15 @@ TARGET_SCREEN_HEIGHT 				:= 800
 TARGET_SCREEN_WIDTH 				:= 480
 
 # Hardware rendering
-USE_OPENGL_RENDERER					 := true
-BOARD_EGL_CFG						 := device/samsung/baffinlite/egl.cfg
-BOARD_USE_MHEAP_SCREENSHOT 			 := true
-BOARD_EGL_WORKAROUND_BUG_10194508 	 := true
+# USE_OPENGL_RENDERER 				:= true
+BOARD_EGL_CFG 						:= device/samsung/baffinlite/egl.cfg
+BOARD_USE_MHEAP_SCREENSHOT 			:= true
+BOARD_EGL_WORKAROUND_BUG_10194508 	:= true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-COMMON_GLOBAL_CFLAGS 				 += -DNEEDS_VECTORIMPL_SYMBOLS -DJAVA_HWC
+COMMON_GLOBAL_CFLAGS 				+= -DNEEDS_VECTORIMPL_SYMBOLS -DJAVA_HWC
 
 # Bootanimation
-# TARGET_BOOTANIMATION_PRELOAD := true
+# TARGET_BOOTANIMATION_PRELOAD 		:= true
 # TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Charger
@@ -131,6 +131,14 @@ HWUI_COMPILE_FOR_PERF 				:= true
 # TARGET_DOESNT_USE_FENCE_SYNC 		:= true
 COMMON_GLOBAL_CFLAGS 				+= -DEGL_NEEDS_FNW
 TARGET_USES_ION 					:= true
+
+
+# BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB 	:= true
+
+#libasound_module_pcm_bcmfilter
+OPENSOURCE_ALSA_AUDIO 				:= true
+BOARD_USES_ALSA_AUDIO 				:= true
+BRCM_ALSA_LIB_DIR 					:= device/samsung/bcm_common/alsa-lib
 
 # BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB 	:= true
 
