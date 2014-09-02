@@ -123,6 +123,9 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/baffinlite/cmhw/
 # GPS
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/baffinlite/include
 
+#libasound_module_pcm_bcmfilter
+BOARD_USES_ALSA_AUDIO := true
+
 # BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 
 # SELinux
