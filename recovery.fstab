@@ -16,4 +16,3 @@
 
 #/devices/platform/sdhci.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0 	auto 	auto 	defaults noemulatedsd,nonremovable,voldmanaged=sdcard0:auto
 /devices/platform/dwc_otg/usb1			auto 		auto 	defaults 			voldmanaged=usbdisk:auto
-

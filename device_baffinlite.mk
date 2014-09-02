@@ -12,11 +12,11 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/baffinlite/overlay
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/recovery.fstab:root/fstab.java_ss_baffinlite \
+	device/samsung/baffinlite/rootdir/fstab.java_ss_baffinlite:root/fstab.java_ss_baffinlite \
 	device/samsung/baffinlite/rootdir/init.java_ss_baffinlite.rc:root/init.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/rootdir/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
 	device/samsung/baffinlite/rootdir/init.log.rc:root/init.log.rc \
-	device/samsung/baffinlite/rootdir/init.rc:root/init.rc \
+#	device/samsung/baffinlite/rootdir/init.rc:root/init.rc \
 	device/samsung/baffinlite/rootdir/lpm.rc:root/lpm.rc \
 	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:recovery/root/ueventd.java_ss_baffinlite.rc \
@@ -32,7 +32,6 @@ PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/bcm_keypad_v2.kl:system/usr/keylayout/bcm_keypad_v2.kl \
 	device/samsung/baffinlite/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
 	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl
-
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -64,6 +63,27 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	charger \
 	charger_res_images
+	
+# Camera
+#PRODUCT_PACKAGES += \
+#    camera.java
+
+# HW drivers
+#PRODUCT_PACKAGES += \
+#    libGLES_hgl \
+#    gralloc.java \
+#    hwcomposer.java
+
+# Lights
+#PRODUCT_PACKAGES += \
+#    lights.java
+
+# Video decoding
+#PRODUCT_PACKAGES += \
+#    libstagefrighthw \
+#    libopencorehw \
+#    libmm-omxcore \
+#    libOmxCore
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -110,6 +130,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
     ro.telephony.call_ring.multiple=0 \
     ro.telephony.call_ring=0 \
+	debug.egl.hw=1 \
+    debug.sf.hw=1 \
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
@@ -132,6 +154,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # MTP
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
+
+# GPS
+$(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 # Dalvik heap config
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
