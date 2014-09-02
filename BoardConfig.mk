@@ -96,7 +96,7 @@ TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
 # Hardware rendering
-USE_OPENGL_RENDERER := true
+# USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/baffinlite/egl.cfg
 BOARD_USE_MHEAP_SCREENSHOT := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
@@ -124,8 +124,10 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/baffinlite/cmhw/
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/baffinlite/include
 
 #libasound_module_pcm_bcmfilter
+OPENSOURCE_ALSA_AUDIO := true
 BOARD_USES_ALSA_AUDIO := true
 BRCM_ALSA_LIB_DIR := device/samsung/bcm_common/alsa-lib
+
 # BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 
 # SELinux
