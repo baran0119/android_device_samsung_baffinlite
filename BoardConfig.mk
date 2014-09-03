@@ -31,7 +31,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE 	:= 5767168000
 BOARD_FLASH_BLOCK_SIZE 				:= 131072
 
 # Use GCC 4.8 toolchain
-#TARGET_GCC_VERSION_EXP 				:= 4.6
+# TARGET_GCC_VERSION_EXP 			:= 4.6
 # TARGET_GCC_VERSION_EXP 			:= 4.8-sm-kk-mr1
 # TARGET_GCC_VERSION_EXP 			:= 4.7-linaro
 # TARGET_KERNEL_CUSTOM_TOOLCHAIN=arm-eabi-4.8
@@ -138,7 +138,7 @@ TARGET_USES_ION 					:= true
 #libasound_module_pcm_bcmfilter
 OPENSOURCE_ALSA_AUDIO 				:= true
 BOARD_USES_ALSA_AUDIO 				:= true
-BRCM_ALSA_LIB_DIR=device/samsung/bcm_common/alsa-lib-1.0.28
+BRCM_ALSA_LIB_DIR=device/samsung/bcm_common/alsa-lib
 
 # BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB 	:= true
 

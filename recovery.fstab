@@ -1,18 +1,20 @@
-#   <src>                 			<mnt_point>	<type> 	<mnt_flags and options> 	<fs_mgr_flags>
-/dev/block/platform/sdhci.1/by-name/KERNEL 	/boot 		emmc 	defaults 			defaults
-/dev/block/platform/sdhci.1/by-name/RECOVERY 	/recovery 	emmc 	defaults 			defaults
-/dev/block/platform/sdhci.1/by-name/modem 	/modem 		emmc 	defaults 			defaults
-/dev/block/platform/sdhci.1/by-name/HIDDEN 	/preload 	ext4 	defaults 			defaults
-/dev/block/platform/sdhci.1/by-name/system 	/system 	ext4 	ro,barrier=1,errors=panic 	wait
-/dev/block/platform/sdhci.1/by-name/efs 	/efs 		ext4   nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic 		wait,check
-/dev/block/platform/sdhci.1/by-name/CSC 	/cache 		ext4   nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic 		wait,check
+#   <src>                 						<mnt_point>	<type> 	<mnt_flags and options> 			<fs_mgr_flags>
+/dev/block/platform/sdhci.1/by-name/KERNEL 		/boot 		emmc 	defaults 							defaults
+/dev/block/platform/sdhci.1/by-name/RECOVERY 	/recovery 	emmc 	defaults 							defaults
+/dev/block/platform/sdhci.1/by-name/modem 		/modem 		emmc 	defaults 							defaults
+/dev/block/platform/sdhci.1/by-name/HIDDEN 		/preload 	ext4 	defaults 							defaults
+/dev/block/platform/sdhci.1/by-name/system 		/system 	ext4 	ro 									wait
+/dev/block/platform/sdhci.1/by-name/efs /efs ext4 nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic 	wait
+/dev/block/platform/sdhci.1/by-name/CSC 		/cache 		ext4 	nosuid,nodev,noatime,nomblk_io_submit,errors=panic 		wait
+
 
 # data partition must be located at the bottom for supporting device encryption
-/dev/block/platform/sdhci.1/by-name/userdata 	/data 		ext4   nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic 		wait,check,encryptable=footer
+/dev/block/platform/sdhci.1/by-name/userdata 	/data 		ext4   rw,nosuid,nodev,noatime,noauto_da_alloc,errors=panic,user_xattr,barrier=1,data=ordered		wait,encryptable=footer
 
 #sdcard
 /dev/block/mmcblk1p1 				/external_sd 	auto 	defaults 			defaults
 /dev/block/mmcblk1p2 				/sd-ext 	auto 	defaults 			defaults
 
 #/devices/platform/sdhci.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0 	auto 	auto 	defaults noemulatedsd,nonremovable,voldmanaged=sdcard0:auto
-/devices/platform/dwc_otg/usb1			auto 		auto 	defaults 			voldmanaged=usbdisk:auto
+#/devices/platform/dwc_otg/usb1			auto 		auto 	defaults 			voldmanaged=usbdisk:auto
+/dev/block/zram0 								none 		swap      defaults                                             zramsize=201326592
