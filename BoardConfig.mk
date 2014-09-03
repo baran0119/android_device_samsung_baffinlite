@@ -138,7 +138,7 @@ TARGET_USES_ION 					:= true
 #libasound_module_pcm_bcmfilter
 OPENSOURCE_ALSA_AUDIO 				:= true
 BOARD_USES_ALSA_AUDIO 				:= true
-BRCM_ALSA_LIB_DIR 					:= device/samsung/bcm_common/alsa-lib
+BRCM_ALSA_LIB_DIR=device/samsung/bcm_common/alsa-lib-1.0.28
 
 # BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB 	:= true
 
