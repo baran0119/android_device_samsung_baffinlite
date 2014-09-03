@@ -167,8 +167,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-include device/samsung/bcm_common/alsa-lib/Android.mk
-
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_baffinlite
 PRODUCT_DEVICE := baffinlite
