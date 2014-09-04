@@ -133,7 +133,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring=0 \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
-
+	debug.sf.no_hw_vsync=1 \
+    ro.hwui.layer_cache_size=0 \
+    ro.systemui.use_gl_wallpaper=0 \
+	
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 PRODUCT_PROPERTY_OVERRIDES += \

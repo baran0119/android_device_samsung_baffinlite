@@ -116,19 +116,22 @@ COMMON_GLOBAL_CFLAGS 				+= -DNEEDS_VECTORIMPL_SYMBOLS -DJAVA_HWC
 BOARD_CHARGER_ENABLE_SUSPEND 		:= true
 BOARD_CHARGING_MODE_BOOTING_LPM 	:= /sys/class/power_supply/battery/batt_lp_charging
 
-# RIL
-BOARD_RIL_CLASS 					:= ../../../device/samsung/baffinlite/ril/
+# CMHW
+BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/baffinlite/cmhw/
 
 # healthd
 BOARD_HAL_STATIC_LIBRARIES 			:= libhealthd.java
 
-# CMHW
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/baffinlite/cmhw/
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS 		:= device/samsung/baffinlite/releasetool
+
+# RIL
+BOARD_RIL_CLASS 					:= ../../../device/samsung/baffinlite/ril/
 
 # GPU Stuff
 # BOARD_EGL_CFG 					:= hardware/broadcom/brcm_usrlib/dag/vmcsx/egl.cfg
 HWUI_COMPILE_FOR_PERF 				:= true
-# TARGET_DOESNT_USE_FENCE_SYNC 		:= true
+TARGET_DOESNT_USE_FENCE_SYNC 		:= true
 COMMON_GLOBAL_CFLAGS 				+= -DEGL_NEEDS_FNW
 TARGET_USES_ION 					:= true
 
