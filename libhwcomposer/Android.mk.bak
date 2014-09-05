@@ -28,10 +28,10 @@ LOCAL_MODULE_TAGS := optional
 
 ifeq ($(BOARD_USES_BROADCOM_HARDWARE),true)
 	LOCAL_PRELINK_MODULE := false
-	LOCAL_SHARED_LIBRARIES += libc libGLESv1_CM libv3d
+	LOCAL_SHARED_LIBRARIES += libc libuip libhardware
 	LOCAL_CFLAGS += -DBCM_HARDWARE -DDIRECT_RENDERING
 	LOCAL_C_INCLUDES += \
-			device/samsung/bcm21553-common/libgralloc \
+			device/samsung/baffinlite/libgralloc \
 			hardware/broadcom/brcm_usrlib/dag/v3d_library/inc \
 			hardware/common/opencore/codec/include
 endif

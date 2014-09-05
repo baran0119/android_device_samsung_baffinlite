@@ -100,14 +100,6 @@ BOARD_USES_SKTEXTBOX 				:= true
 TARGET_SCREEN_HEIGHT 				:= 800
 TARGET_SCREEN_WIDTH 				:= 480
 
-# Hardware rendering
-# USE_OPENGL_RENDERER 				:= true
-BOARD_EGL_CFG 						:= device/samsung/baffinlite/egl.cfg
-BOARD_USE_MHEAP_SCREENSHOT 			:= true
-BOARD_EGL_WORKAROUND_BUG_10194508 	:= true
-TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-COMMON_GLOBAL_CFLAGS 				+= -DNEEDS_VECTORIMPL_SYMBOLS -DJAVA_HWC
-
 # Bootanimation
 # TARGET_BOOTANIMATION_PRELOAD 		:= true
 # TARGET_BOOTANIMATION_TEXTURE_CACHE := true
@@ -128,13 +120,20 @@ TARGET_RELEASETOOLS_EXTENSIONS 		:= device/samsung/baffinlite/releasetool
 # RIL
 BOARD_RIL_CLASS 					:= ../../../device/samsung/baffinlite/ril/
 
-# GPU Stuff
+# Hardware rendering / GPU Stuff
+# USE_OPENGL_RENDERER 				:= true
+# EGL CONFIG is not longer need in KK ?
 # BOARD_EGL_CFG 					:= hardware/broadcom/brcm_usrlib/dag/vmcsx/egl.cfg
+# BOARD_EGL_CFG 						:= device/samsung/baffinlite/egl.cfg
+BOARD_USE_MHEAP_SCREENSHOT 			:= true
+BOARD_EGL_WORKAROUND_BUG_10194508 	:= true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+COMMON_GLOBAL_CFLAGS 				+= -DNEEDS_VECTORIMPL_SYMBOLS -DJAVA_HWC
+# BOARD_HAVE_BRCM_DAG 				:= true
 HWUI_COMPILE_FOR_PERF 				:= true
 TARGET_DOESNT_USE_FENCE_SYNC 		:= true
 COMMON_GLOBAL_CFLAGS 				+= -DEGL_NEEDS_FNW
 TARGET_USES_ION 					:= true
-
 
 # BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB 	:= true
 
