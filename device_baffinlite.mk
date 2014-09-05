@@ -135,6 +135,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring=0 \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
+	debug.sf.showupdates=1 \
+	debug.sf.ddms=1 \
 	
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
