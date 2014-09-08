@@ -64,29 +64,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	charger \
 	charger_res_images
-	
-# Camera
-#PRODUCT_PACKAGES += \
-#    camera.java
-
-# HW drivers
-#PRODUCT_PACKAGES += \
-#    libGLES_hgl \
-#    gralloc.java \
-#    hwcomposer.java
-
-# PRODUCT_PACKAGES += hwcomposer.java
- 
-# Lights
-#PRODUCT_PACKAGES += \
-#    lights.java
-
-# Video decoding
-#PRODUCT_PACKAGES += \
-#    libstagefrighthw \
-#    libopencorehw \
-#    libmm-omxcore \
-#    libOmxCore
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -135,9 +112,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.call_ring=0 \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
-	debug.sf.showupdates=1 \
-	debug.sf.ddms=1 \
-	
+    debug.sf.ddms=1 \
+
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 PRODUCT_PROPERTY_OVERRIDES += \
