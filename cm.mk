@@ -17,6 +17,3 @@ PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := GT-I9060
 PRODUCT_CHARACTERISTICS := phone
-
-#Set build fingerprint / ID / Prduct Name ect.
-#PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=baffinlitexx TARGET_DEVICE=baffinlite BUILD_FINGERPRINT=samsung/baffinlitexx/baffinlite:4.2.2/JDQ39/I9060XXUANB1:user/release-keys PRIVATE_BUILD_DESC="baffinlitexx-user 4.2.2 JDQ39 I9060XXUANB1 release-keys"
