@@ -20,9 +20,6 @@ PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/recovery/etc/extra.fstab:recovery/root/etc/extra.fstab \
 	device/samsung/baffinlite/recovery/ueventd.java_ss_baffinlite.rc:recovery/root/ueventd.java_ss_baffinlite.rc \
-#	device/samsung/baffinlite/rootdir/init.rc:root/init.rc \
-#	device/samsung/baffinlite/recovery/init.recovery.java_ss_baffinlite.rc:recovery/root/init.recovery.java_ss_baffinlite.rc \
-
 
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml
@@ -89,15 +86,6 @@ PRODUCT_COPY_FILES += \
 
 ADDITIONAL_DEFAULT_PROPERTIES += \
 	persist.service.adb.enable=1 \
-	persist.brcm.log=auto \
-	persist.brcm.cp_crash=auto \
-	persist.brcm.ap_crash=auto
-	
-# Support for Browser's saved page feature. This allows
-# for pages saved on previous versions of the OS to be
-# viewed on the current OS.
-# PRODUCT_PACKAGES += \
-#     libskia_legacy
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
@@ -110,9 +98,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
     ro.telephony.call_ring.multiple=0 \
     ro.telephony.call_ring=0 \
-    debug.egl.hw=1 \
-    debug.sf.hw=1 \
-    debug.sf.ddms=1 \
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
