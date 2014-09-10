@@ -13,6 +13,7 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/baffinlite/overlay
 # Init files
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/rootdir/fstab.java_ss_baffinlite:root/fstab.java_ss_baffinlite \
+	device/samsung/baffinlite/rootdir/init.bt.rc:root/init.bt.rc \
 	device/samsung/baffinlite/rootdir/init.java_ss_baffinlite.rc:root/init.java_ss_baffinlite.rc \
 	device/samsung/baffinlite/rootdir/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
 	device/samsung/baffinlite/rootdir/init.log.rc:root/init.log.rc \
