@@ -26,12 +26,6 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610334208
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5767168000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Use GCC 4.8 toolchain
-# TARGET_GCC_VERSION_EXP := 4.6
-# TARGET_GCC_VERSION_EXP := 4.8-sm-kk-mr1
-# TARGET_GCC_VERSION_EXP := 4.7-linaro
-# TARGET_KERNEL_CUSTOM_TOOLCHAIN=arm-eabi-4.8
-
 # Assert
 TARGET_OTA_ASSERT_DEVICE := baffinlite,i9060,gt-i9060,GT-I9060,gt-i9060l,GT-I9060L,
 
@@ -58,8 +52,7 @@ BOARD_USE_B_SLOT_PROTOCOL := true
 
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 
-#fix fr the graphic glitch 
-# TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+#fix fr the graphic glitch
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_HAS_FLIPPED_SCREEN := true
 
@@ -96,10 +89,6 @@ BOARD_USES_SKTEXTBOX := true
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
-# Bootanimation
-# TARGET_BOOTANIMATION_PRELOAD := true
-# TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
@@ -117,27 +106,18 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/baffinlite/releasetool
 BOARD_RIL_CLASS := ../../../device/samsung/baffinlite/ril/
 
 # Hardware rendering / GPU Stuff
-# USE_OPENGL_RENDERER := true
-# EGL CONFIG is not longer need in KK ?
-# BOARD_EGL_CFG := hardware/broadcom/brcm_usrlib/dag/vmcsx/egl.cfg
-# BOARD_EGL_CFG := device/samsung/baffinlite/egl.cfg
 BOARD_USE_MHEAP_SCREENSHOT := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
-# TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS -DJAVA_HWC
 HWUI_COMPILE_FOR_PERF := true
 TARGET_DOESNT_USE_FENCE_SYNC := true
 COMMON_GLOBAL_CFLAGS += -DEGL_NEEDS_FNW
 TARGET_USES_ION := true
 
-# BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
-
 #libasound_module_pcm_bcmfilter
 OPENSOURCE_ALSA_AUDIO := true
 BOARD_USES_ALSA_AUDIO := true
 BRCM_ALSA_LIB_DIR=device/samsung/bcm_common/alsa-lib
-
-# BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
