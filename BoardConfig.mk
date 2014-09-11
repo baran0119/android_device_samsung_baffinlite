@@ -59,7 +59,7 @@ BOARD_HAS_FLIPPED_SCREEN := true
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/baffinlite/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/baffinlite/libbt_vndcfg.txt
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/baffinlite/bluetooth/libbt_vndcfg_i9060.txt
 
 # Camera
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
