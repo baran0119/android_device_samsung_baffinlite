@@ -533,8 +533,8 @@ service ril-daemon /system/bin/rild
     socket rild stream 660 root radio
     socket rild1 stream 660 root radio
     socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio system sdcard_rw log sdcard_r
+    user radio
+    group root cache inet misc audio system sdcard_rw log sdcard_r
 #    onrestart restart cpboot-daemon
 
 # create virtual SD card at /storage/sdcard, based on the /data/media directory
