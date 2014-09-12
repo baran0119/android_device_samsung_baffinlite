@@ -24,12 +24,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml
 
-# Prebuilt kl keymaps
+# Prebuilt kl keylayout
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/bcm_headset.kl:system/usr/keylayout/bcm_headset.kl \
 	device/samsung/baffinlite/bcm_keypad_v2.kl:system/usr/keylayout/bcm_keypad_v2.kl \
 	device/samsung/baffinlite/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
 	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl
+
+# Audio
+PRODUCT_PACKAGES += \
+	audio.r_submix.default
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -37,10 +41,10 @@ PRODUCT_PACKAGES += \
 
 # F2FS filesystem
 PRODUCT_PACKAGES += \
-    mkfs.f2fs \
-    fsck.f2fs \
-    fibmap.f2fs \
-    f2fstat
+	mkfs.f2fs \
+	fsck.f2fs \
+	fibmap.f2fs \
+	f2fstat
 
 # Usb accessory
 PRODUCT_PACKAGES += \
