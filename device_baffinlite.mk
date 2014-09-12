@@ -35,10 +35,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
 	audio.r_submix.default
 
-# OMX
-PRODUCT_PACKAGES += \
-	libdashplayer
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
 	setup_fs
