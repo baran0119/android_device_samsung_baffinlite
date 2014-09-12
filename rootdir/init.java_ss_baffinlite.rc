@@ -35,7 +35,10 @@ on init
 
     symlink /dev/block/mmcblk0p8 /dev/block/param    
 
-    mkdir /preload 0771 system system 
+    mkdir /preload 0771 system system
+   
+# We will create our own ril-daemon service with different perm and sockets
+    stop ril-daemon
 
 on post-fs-data
 # we will remap this as /storage/sdcard with the sdcard fuse tool
@@ -525,7 +528,7 @@ service at_distributor /system/bin/at_distributor
 	group radio misc log
 
 # RILD
-service ril-daemon /system/bin/rild
+service java-ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
     socket rild1 stream 660 root radio
