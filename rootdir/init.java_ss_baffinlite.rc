@@ -19,9 +19,11 @@ on init
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
-    export SECONDARY_STORAGE /storage/sdcard1
+    export SECONDARY_STORAGE /storage/sdcard1:/storage/usbdisk0
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
     mkdir /storage/sdcard1 0700 root root
+    mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
+    mkdir /storage/usbdisk0 0700 root root
 
 # KSM
     write /sys/kernel/mm/ksm/pages_to_scan 100
@@ -39,6 +41,9 @@ on init
    
 # We will create our own ril-daemon service with different perm and sockets
     stop ril-daemon
+	
+# We will create our own drmserver service with different perm
+    stop drm
 
 on post-fs-data
 # we will remap this as /storage/sdcard with the sdcard fuse tool
@@ -258,7 +263,7 @@ on boot
 
 # BCMPMU drivers
     chown -R system system /sys/devices/platform/bcmpmu*/*
-
+# */
 # change owner of mtest system to allow atx/atxd to write this file:
     chown system system /sys/kernel/sysrpc/mtest    
 
@@ -337,26 +342,8 @@ on boot
 
 # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
     setprop ro.multisim.simslotcount 2
-    
-on fs
-    mount_all /fstab.java_ss_baffinlite
-    setprop ro.crypto.fuse_sdcard true
 
-    # don't require sim
-    setprop keyguard.no_require_sim 1
-
-    #j4fs module
-#    insmod /system/lib/modules/j4fs.ko
-#    mount j4fs /dev/block/mmcblk0p8 /mnt/.lfs 
-
-    #SEC_PARAM
-#    insmod sec_param.ko
-
-# For NV Read/Write 
-	chown radio system /dev/block/mmcblk0p1    
-	chmod 0770 /dev/block/mmcblk0p1
-
-    # for multi csc
+# for multi csc
     chown radio radio /proc/LinuStoreIII/efs_info
     chmod 0664 /proc/LinuStoreIII/efs_info
     # for protecting key string
@@ -396,6 +383,9 @@ on fs
     chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
+	# Permissions for Camera
+#	chmod 220 /sys/class/camera/rear/rear_camfw
+#	chmod 220 /sys/class/camera/rear/rear_camtype
 
     # Switch Device
     chown system radio /sys/class/sec/switch/adc
@@ -425,6 +415,17 @@ on fs
     chown radio system /efs/redata.bin
     chmod 0644 /efs/h2k.dat
     mkdir /data/misc/radio/hatp 0775 radio system
+
+on fs
+    mount_all /fstab.java_ss_baffinlite
+    setprop ro.crypto.fuse_sdcard true
+
+    # don't require sim
+    setprop keyguard.no_require_sim 1
+
+# For NV Read/Write 
+	chown radio system /dev/block/mmcblk0p1    
+	chmod 0770 /dev/block/mmcblk0p1
 
 #for ASE application
     mkdir /data/brcm
@@ -521,11 +522,27 @@ service setup_fs /system/bin/setup_fs \
     group root
     oneshot
 
+service mobex-daemon /system/bin/npsmobex
+    class main
+    user system
+    group system radio inet sdcard_r sdcard_rw media_rw shell
+
+service java-drm /system/bin/drmserver
+    class main
+    user drm
+# [ SEC_MM_DRM
+# fix
+    group system drm inet drmrpc sdcard_r sdcard_rw media_rw radio shell
+# org
+#    group drm system inet drmrpc
+# ]
+
 #at_distributor for making file for factory.
 service at_distributor /system/bin/at_distributor
-	class main
-	user root
-	group radio misc log
+    class main
+    user root
+    group root
+    oneshot
 
 # RILD
 service java-ril-daemon /system/bin/rild
@@ -592,9 +609,7 @@ service iprenew_p2p /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
-# Permissions for Camera
-         chmod 220 /sys/class/camera/rear/rear_camfw
-         chmod 220 /sys/class/camera/rear/rear_camtype
+
 # When the default SIM for data connections is updated,
 # also update the DUN AT channel with the default SIM.
 on property:persist.sys.dataprefer.simid=0
@@ -649,16 +664,12 @@ service gpsd /system/bin/glgps -c /system/etc/gps/glconfig.xml
     group system root inet radio wifi sdcard_rw
 
 # Run ATX over UART
-service console /system/bin/atx -l -d
+service console_atx /system/bin/atx -l -d
     class main
     console
 #    oneshot
     user system
     group vpn net_admin net_raw radio system sdcard_rw log mount
-
-# Kexec enable
-service kexec /system/kexec/kexec.sh
-    oneshot
 
 # Run bkmgrd automatically on startup
 service bkmgrd /system/bin/bkmgrd
@@ -673,8 +684,6 @@ service usb_portd /system/bin/usb_portd
 #    oneshot
     user system
     group input vpn net_admin net_raw radio system sdcard_rw log mount
-
-    
 
 # When the default SIM for data connections is updated,
 # also update the DUN AT channel with the default SIM.
@@ -715,24 +724,6 @@ service startadb /system/etc/startadb.sh
 service battery_charger /charger
     class charger
 
-# Bluetooth LE 2 wired Test
-service LE_dut_cmd_on /system/bin/bttestintf enable
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service LE_dut_cmd_off /system/bin/bttestintf disable
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-service bttestdaemon /system/bin/bttestd
-    class main
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
 # SA, System SW, SAMSUNG
 service bugreport /system/bin/bugmailer.sh -v
     class main
@@ -745,5 +736,9 @@ on property:ro.dumpstate.dmesg=1
 
 # fusewrapped external sdcard daemon running as media_rw (1023)
 service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk0 /storage/usbdisk0
     class late_start
     disabled

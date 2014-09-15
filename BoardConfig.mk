@@ -48,7 +48,7 @@ TARGET_SCREEN_WIDTH := 480
 BOARD_HAS_LOW_RESOLUTION := true
 BRIGHTNESS_SYS_FILE := "/sys/class/backlight/panel/brightness"
 BOARD_USE_B_SLOT_PROTOCOL := true
-
+BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 
 #fix fr the graphic glitch
