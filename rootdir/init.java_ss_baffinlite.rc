@@ -610,20 +610,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-# When the default SIM for data connections is updated,
-# also update the DUN AT channel with the default SIM.
-on property:persist.sys.dataprefer.simid=0
-     write /data/atx/setsim.txt at*msetsim=1
-     chmod 0666 /data/atx/setsim.txt
-     start set_simid
-
-# When the default SIM for data connections is updated,
-# also update the DUN AT channel with the default SIM.
-on property:persist.sys.dataprefer.simid=1
-     write /data/atx/setsim.txt at*msetsim=2
-     chmod 0666 /data/atx/setsim.txt
-     start set_simid
-
 #btld is only used for FM
 # Make sure we startup btld before hcid
 #service btld /system/bin/logwrapper /system/bin/btld -hb 3000000 -hp /dev/ttyS1 -lpm 0 -nice -7
@@ -682,14 +668,6 @@ service bkmgrd /system/bin/bkmgrd
 service usb_portd /system/bin/usb_portd
     class main
 #    oneshot
-    user system
-    group input vpn net_admin net_raw radio system sdcard_rw log mount
-
-# When the default SIM for data connections is updated,
-# also update the DUN AT channel with the default SIM.
-service set_simid /system/bin/atx --fordev=ACM --runcmd=/data/atx/setsim.txt
-    disabled
-    oneshot
     user system
     group input vpn net_admin net_raw radio system sdcard_rw log mount
 
