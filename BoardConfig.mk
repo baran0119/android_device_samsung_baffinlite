@@ -1,3 +1,5 @@
+USE_CAMERA_STUB := true
+
 # inherit from the proprietary version
 -include vendor/samsung/baffinlite/BoardConfigVendor.mk
 
@@ -11,6 +13,7 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a7
 TARGET_BOOTLOADER_BOARD_NAME := java
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/baffinlite/include
+TARGET_CPU_SMP := true
 
 BOARD_KERNEL_CMDLINE := 
 BOARD_KERNEL_BASE := 0x81e00000
