@@ -131,11 +131,6 @@ COMMON_GLOBAL_CFLAGS += -DEGL_NEEDS_FNW
 TARGET_USES_ION := true
 COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
 
-#libasound_module_pcm_bcmfilter
-OPENSOURCE_ALSA_AUDIO := true
-BOARD_USES_ALSA_AUDIO := true
-BRCM_ALSA_LIB_DIR=device/samsung/bcm_common/alsa-lib
-
 # SELinux
 BOARD_SEPOLICY_DIRS += \
     device/samsung/baffinlite/sepolicy
