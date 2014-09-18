@@ -8,12 +8,12 @@
 		"target_path": "hardware/samsung",
 		"branch": "cm-11.0"
 	}, {
-		"remote": "baran0119",
+		"account": "baran0119",
 		"repository": "kernel_samsung_baffinlitexx",
 		"target_path": "kernel/samsung/baffinlite",
 		"revision" : "cm-11.0"
  	}, {
-		"remote": "baran0119",
+		"account": "baran0119",
 		"repository": "android_vendor_samsung_baffinlite",
 		"target_path": "vendor/samsung/baffinlite",
 		"revision" : "cm-11.0"
