@@ -41,6 +41,7 @@ PRODUCT_PACKAGES += \
 
 # F2FS filesystem
 PRODUCT_PACKAGES += \
+	e2fsck \
 	mkfs.f2fs \
 	fsck.f2fs \
 	fibmap.f2fs \
