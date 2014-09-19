@@ -44,6 +44,9 @@ on init
 	
 # We will create our own drmserver service with different perm
     stop drm
+	
+# We will create our own console service
+    stop console
 
 on post-fs-data
 # we will remap this as /storage/sdcard with the sdcard fuse tool
@@ -546,6 +549,21 @@ on boot
 	chmod 0777 /data/DiamondVoice_SF_Filter_WB.txt
 	insmod /system/lib/modules/VoiceSolution.ko
 
+# Init Compcache taejin5.park
+    chmod 0664 /sys/class/lmk/lowmemorykiller/lmk_state
+    chown system system /sys/class/lmk/lowmemorykiller/lmk_state
+    chmod 0664 /sys/block/zram0/disksize
+    chown system system /sys/block/zram0/disksize
+	write /sys/block/zram0/disksize 201326592
+    chmod 0664 /sys/block/zram0/initstate
+    chown system system /sys/block/zram0/initstate
+    write /sys/block/zram0/initstate 1
+
+# serial_no permission change
+    touch /efs/FactoryApp/serial_no
+    chmod 0770 /efs/FactoryApp/serial_no
+    chown system system /efs/FactoryApp/serial_no
+
     # permission for HDMI audio path
     chown media audio /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
 
@@ -642,17 +660,6 @@ on property:persist.sys.storage_preload=1
 
 on property:persist.sys.storage_preload=0
     exec /system/bin/umount /preload   
-
-## Daemon processes to be run by init.
-##
-#service console /system/bin/sh
-#    class core
-#    console
-#    disabled
-#    group log
-
-on property:ro.debuggable=1
-    start console
 
 # create filesystem if necessary
 service setup_fs /system/bin/setup_fs \
@@ -797,6 +804,9 @@ service console_atx /system/bin/atx -l -d
 #    oneshot
     user system
     group vpn net_admin net_raw radio system sdcard_rw log mount
+
+on property:ro.debuggable=1
+    start console
 
 # Run bkmgrd automatically on startup
 service bkmgrd /system/bin/bkmgrd
