@@ -39,17 +39,17 @@
 #include <errno.h>
 #include <stdarg.h>
 
-#include <alsa/asoundef.h>
-#include <alsa/version.h>
-#include <alsa/global.h>
-#include <alsa/input.h>
-#include <alsa/output.h>
-#include <alsa/error.h>
-#include <alsa/conf.h>
-#include <alsa/pcm.h>
-#include <alsa/timer.h>
-#include <alsa/hwdep.h>
-#include <alsa/control.h>
-#include <alsa/mixer.h>
+#include <asoundef.h>
+#include <version.h>
+#include <global.h>
+#include <input.h>
+#include <output.h>
+#include <error.h>
+#include <conf.h>
+#include <pcm.h>
+#include <timer.h>
+#include <hwdep.h>
+#include <control.h>
+#include <mixer.h>
 
 #endif /* __ASOUNDLIB_H */
