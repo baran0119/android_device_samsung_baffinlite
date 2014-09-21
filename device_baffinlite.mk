@@ -32,7 +32,6 @@ PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl
 
 PRODUCT_PACKAGES += \
-	libasound \
 	libasound_module_pcm_bcmfilter
 
 # Audio
