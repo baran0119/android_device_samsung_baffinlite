@@ -111,9 +111,6 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/baffinlite/cmhw/
 # healthd
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.java
 
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/baffinlite/releasetool
-
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/baffinlite/ril/
 
