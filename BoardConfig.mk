@@ -60,6 +60,7 @@ BOARD_HAS_FLIPPED_SCREEN := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+BRCM_ALSA_LIB_DIR := device/samsung/baffinlite/libasound
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
