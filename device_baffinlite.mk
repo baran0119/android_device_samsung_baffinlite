@@ -31,12 +31,6 @@ PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
 	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl
 
-PRODUCT_PACKAGES += \
-	libasound_module_pcm_bcmfilter \
-	audio_policy.java \
-	audio.primary.java \
-	libaudiopolicy_legacy2
-
 # Audio
 PRODUCT_PACKAGES += \
 	audio.r_submix.default
