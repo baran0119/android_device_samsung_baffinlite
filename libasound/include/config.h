@@ -2,27 +2,19 @@
 /* include/config.h.in.  Generated from configure.in by autoheader.  */
 
 /* Directory with aload* device files */
-#ifndef ALOAD_DEVICE_DIRECTORY
 #define ALOAD_DEVICE_DIRECTORY "/dev/"
-#endif
 
 /* directory containing ALSA configuration database */
-#ifndef ALSA_CONFIG_DIR
 #define ALSA_CONFIG_DIR "/usr/share/alsa"
-#endif
 
 /* Enable assert at error message handler */
 /* #undef ALSA_DEBUG_ASSERT */
 
 /* Directory with ALSA device files */
-#ifndef ALSA_DEVICE_DIRECTORY
 #define ALSA_DEVICE_DIRECTORY "/dev/snd/"
-#endif
 
 /* directory containing ALSA add-on modules */
-#ifndef ALSA_PLUGIN_DIR
-#define ALSA_PLUGIN_DIR "/usr/lib/alsa-lib"
-#endif
+#define ALSA_PLUGIN_DIR "/system/usr/lib/alsa-lib"
 
 /* Build hwdep component */
 #define BUILD_HWDEP "1"
@@ -34,22 +26,25 @@
 #define BUILD_PCM "1"
 
 /* Build PCM adpcm plugin */
-#define BUILD_PCM_PLUGIN_ADPCM "1"
+/* #undef BUILD_PCM_PLUGIN_ADPCM */
 
 /* Build PCM alaw plugin */
-#define BUILD_PCM_PLUGIN_ALAW "1"
+/* #undef BUILD_PCM_PLUGIN_ALAW */
 
 /* Build PCM lfloat plugin */
-#define BUILD_PCM_PLUGIN_LFLOAT "1"
+/* #undef BUILD_PCM_PLUGIN_LFLOAT */
+
+/* Build PCM mmap-emul plugin */
+/* #undef BUILD_PCM_PLUGIN_MMAP_EMUL */
 
 /* Build PCM mulaw plugin */
-#define BUILD_PCM_PLUGIN_MULAW "1"
+/* #undef BUILD_PCM_PLUGIN_MULAW */
 
 /* Build PCM rate plugin */
-#define BUILD_PCM_PLUGIN_RATE "1"
+/* #undef BUILD_PCM_PLUGIN_RATE */
 
 /* Build PCM route plugin */
-#define BUILD_PCM_PLUGIN_ROUTE "1"
+/* #undef BUILD_PCM_PLUGIN_ROUTE */
 
 /* Build raw MIDI component */
 /* #undef BUILD_RAWMIDI */
@@ -106,12 +101,10 @@
 #define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have the <wordexp.h> header file. */
-/* #undef HAVE_WORDEXP_H */
+#define HAVE_WORDEXP_H 1
 
 /* No assert debug */
-#ifndef NDEBUG
-#define NDEBUG
-#endif
+#define NDEBUG 
 
 /* Name of package */
 #define PACKAGE "alsa-lib"
@@ -147,7 +140,7 @@
 #define TMPDIR "/tmp"
 
 /* sound library version string */
-#define VERSION "1.0.16"
+#define VERSION "1.0.23"
 
 /* compiled with versioned symbols */
 /* #undef VERSIONED_SYMBOLS */
@@ -161,5 +154,5 @@
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
 #ifndef __cplusplus
-#define inline __inline
+/* #undef inline */
 #endif

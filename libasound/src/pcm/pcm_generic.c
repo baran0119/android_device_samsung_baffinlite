@@ -30,6 +30,7 @@
 #include <limits.h>
 #include "pcm_local.h"
 #include "pcm_generic.h"
+#include <pcm.h>
 
 #ifndef DOC_HIDDEN
 
