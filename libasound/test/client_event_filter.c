@@ -1,4 +1,4 @@
-#include <alsa/asoundlib.h>
+#include <asoundlib.h>
 
 void dump_event_filter(snd_seq_client_info_t *client_info) {
 	int i, b;

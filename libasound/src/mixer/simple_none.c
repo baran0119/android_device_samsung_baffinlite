@@ -38,7 +38,7 @@
 #include <assert.h>
 #include <math.h>
 #include <limits.h>
-#include <alsa/asoundlib.h>
+#include <asoundlib.h>
 #include "mixer_simple.h"
 #include "config.h"
 

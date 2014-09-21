@@ -2,7 +2,7 @@
 #define TEST_H_INCLUDED
 
 #include <stdio.h>
-#include <alsa/asoundlib.h>
+#include <asoundlib.h>
 
 /* XXX this variable definition does not belong in a header file */
 static int any_test_failed;

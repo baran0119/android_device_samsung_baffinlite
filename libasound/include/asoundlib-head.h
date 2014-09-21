@@ -39,10 +39,10 @@
 #include <errno.h>
 #include <stdarg.h>
 
-#include <alsa/asoundef.h>
-#include <alsa/version.h>
-#include <alsa/global.h>
-#include <alsa/input.h>
-#include <alsa/output.h>
-#include <alsa/error.h>
-#include <alsa/conf.h>
+#include <asoundef.h>
+#include <version.h>
+#include <global.h>
+#include <input.h>
+#include <output.h>
+#include <error.h>
+#include <conf.h>

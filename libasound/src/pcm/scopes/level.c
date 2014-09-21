@@ -20,7 +20,7 @@
 
 #include <curses.h>
 #include <errno.h>
-#include <alsa/asoundlib.h>
+#include <asoundlib.h>
 
 #define BAR_WIDTH 70
 /* milliseconds to go from 32767 to 0 */

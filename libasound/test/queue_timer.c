@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <sys/time.h>
-#include <alsa/asoundlib.h>
-#include <alsa/seq.h>
+#include <asoundlib.h>
+#include <seq.h>
 
 void normalize(struct timeval *tv)
 {

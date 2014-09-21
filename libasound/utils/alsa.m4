@@ -70,7 +70,7 @@ no_alsa=""
 AC_LANG_SAVE
 AC_LANG_C
 AC_TRY_COMPILE([
-#include <alsa/asoundlib.h>
+#include <asoundlib.h>
 ], [
 /* ensure backward compatibility */
 #if !defined(SND_LIB_MAJOR) && defined(SOUNDLIB_VERSION_MAJOR)
