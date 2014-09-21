@@ -58,10 +58,6 @@ BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_HAS_FLIPPED_SCREEN := true
 
-# Audio
-BOARD_USES_ALSA_AUDIO := true
-BRCM_ALSA_LIB_DIR := device/samsung/baffinlite/libasound
-
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
