@@ -21,8 +21,13 @@ PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/recovery/etc/extra.fstab:recovery/root/etc/extra.fstab \
 	device/samsung/baffinlite/recovery/ueventd.java_ss_baffinlite.rc:recovery/root/ueventd.java_ss_baffinlite.rc \
 
+# Configs
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml
+	device/samsung/baffinlite/configs/audio_policy.conf:system/etc/audio_policy.conf \
+	device/samsung/baffinlite/configs/default_gain.conf:system/etc/default_gain.conf \
+	device/samsung/baffinlite/configs/media_codecs.xml:system/etc/media_codecs.xml \
+	device/samsung/baffinlite/configs/media_profiles.xml:system/etc/media_profiles.xml \
+	device/samsung/baffinlite/configs/tinyucm.conf:system/etc/tinyucm.conf
 
 # Prebuilt kl keylayout
 PRODUCT_COPY_FILES += \

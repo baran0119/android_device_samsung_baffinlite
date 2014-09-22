@@ -1,3 +1,4 @@
+##### audio_policy ######
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -12,8 +13,8 @@ LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)
 
-
-##############
+##### audio_policy END ###### 
+##### audio.primary ######
 
 include $(CLEAR_VARS)
 
@@ -32,3 +33,5 @@ LOCAL_C_INCLUDES += \
 LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils libdl libexpat
 
 include $(BUILD_SHARED_LIBRARY)
+
+##### audio.primary END ######
