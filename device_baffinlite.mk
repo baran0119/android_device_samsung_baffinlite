@@ -38,7 +38,12 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-	audio.r_submix.default
+	audio.a2dp.default \
+	audio.primary.default \
+	audio.r_submix.default \
+	audio.usb.default
+
+PRODUCT_PACKAGES += libstagefright_avc_common
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -55,11 +60,6 @@ PRODUCT_PACKAGES += \
 # Usb accessory
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
-
-# Misc other modules
-PRODUCT_PACKAGES += \
-	audio.a2dp.default \
-	audio.usb.default
 
 # Device-specific packages
 PRODUCT_PACKAGES += \
@@ -104,10 +104,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     mobiledata.interfaces=rmnet0 \
     ro.telephony.ril_class=SamsungBCMRIL \
-    ro.zygote.disable_gl_preload=true \
-    ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
     ro.telephony.call_ring.multiple=0 \
     ro.telephony.call_ring=0 \
+    ro.zygote.disable_gl_preload=true \
+    ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
     ro.sf.lcd_density=190 \
 
 # enable Google-specific location features,
