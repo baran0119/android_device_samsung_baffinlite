@@ -1,8 +1,5 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_us_supl.mk)
-
 $(call inherit-product-if-exists, vendor/samsung/baffinlite/baffinlite-vendor.mk)
 
 # Use high-density artwork where available
@@ -12,64 +9,68 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/baffinlite/overlay
 
 # Init files
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/rootdir/fstab.java_ss_baffinlite:root/fstab.java_ss_baffinlite \
-	device/samsung/baffinlite/rootdir/init.java_ss_baffinlite.rc:root/init.java_ss_baffinlite.rc \
-	device/samsung/baffinlite/rootdir/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
-	device/samsung/baffinlite/rootdir/init.log.rc:root/init.log.rc \
-	device/samsung/baffinlite/rootdir/lpm.rc:root/lpm.rc \
-	device/samsung/baffinlite/rootdir/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
-	device/samsung/baffinlite/recovery/etc/extra.fstab:recovery/root/etc/extra.fstab \
-	device/samsung/baffinlite/recovery/ueventd.java_ss_baffinlite.rc:recovery/root/ueventd.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/init.java_ss_baffinlite.rc:root/init.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/init.bcm23550.usb.rc:root/init.bcm23550.usb.rc \
+	device/samsung/baffinlite/init.log.rc:root/init.log.rc \
+	device/samsung/baffinlite/init.recovery.java_ss_baffinlite.rc:root/init.recovery.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/ueventd.java_ss_baffinlite.rc:root/ueventd.java_ss_baffinlite.rc \
+	device/samsung/baffinlite/fstab.java_ss_baffinlite:root/fstab.java_ss_baffinlite \
 
-# Configs
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/configs/audio_policy.conf:system/etc/audio_policy.conf \
-	device/samsung/baffinlite/configs/default_gain.conf:system/etc/default_gain.conf \
-	device/samsung/baffinlite/configs/media_codecs.xml:system/etc/media_codecs.xml \
-	device/samsung/baffinlite/configs/media_profiles.xml:system/etc/media_profiles.xml \
-	device/samsung/baffinlite/configs/tinyucm.conf:system/etc/tinyucm.conf
+	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+	device/samsung/baffinlite/media_profiles.xml:system/etc/media_profiles.xml \
+	device/samsung/baffinlite/media_codecs.xml:system/etc/media_codecs.xml \
 
-# Prebuilt kl keylayout
+# Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
 	device/samsung/baffinlite/bcm_headset.kl:system/usr/keylayout/bcm_headset.kl \
 	device/samsung/baffinlite/bcm_keypad_v2.kl:system/usr/keylayout/bcm_keypad_v2.kl \
 	device/samsung/baffinlite/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl
+	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl \
 
-# Audio
-PRODUCT_PACKAGES += \
-	audio.a2dp.default \
-	audio.primary.default \
-	audio.r_submix.default \
-	audio.usb.default
-
-PRODUCT_PACKAGES += libstagefright_avc_common
+# Insecure ADBD
+ADDITIONAL_DEFAULT_PROPERTIES += \
+	ro.adb.secure=3 \
+	persist.sys.root_access=3
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-	setup_fs
-
-# F2FS filesystem
-PRODUCT_PACKAGES += \
+	setup_fs \
 	e2fsck \
 	mkfs.f2fs \
 	fsck.f2fs \
-	fibmap.f2fs \
-	f2fstat
+	fibmap.f2fs
 
 # Usb accessory
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
+# Audio modules
+PRODUCT_PACKAGES += \
+	audio.a2dp.default \
+	audio.usb.default \
+	audio.r_submix.default
+
+USE_CUSTOM_AUDIO_POLICY := 1
+
 # Device-specific packages
 PRODUCT_PACKAGES += \
 	SamsungServiceMode \
-	Torch
+	Torch \
 
 # Charger
 PRODUCT_PACKAGES += \
-	charger \
 	charger_res_images
+
+# Wi-Fi
+PRODUCT_PACKAGES += \
+	dhcpcd.conf \
+	hostapd \
+	wpa_supplicant \
+	wpa_supplicant.conf
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -93,9 +94,11 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-
-ADDITIONAL_DEFAULT_PROPERTIES += \
-	persist.service.adb.enable=1 \
+# Support for Browser's saved page feature. This allows
+# for pages saved on previous versions of the OS to be
+# viewed on the current OS.
+PRODUCT_PACKAGES += \
+    libskia_legacy
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
@@ -104,17 +107,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     mobiledata.interfaces=rmnet0 \
     ro.telephony.ril_class=SamsungBCMRIL \
-    ro.telephony.call_ring.multiple=0 \
-    ro.telephony.call_ring=0 \
     ro.zygote.disable_gl_preload=true \
     ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
-    ro.sf.lcd_density=190 \
+    persist.radio.multisim.config=dsds \
+    ro.telephony.call_ring.multiple=0 \
+    ro.telephony.call_ring=0 \
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=0 \
-    ro.com.google.networklocation=0
+    ro.com.google.locationfeatures=1 \
+    ro.com.google.networklocation=1
 
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
@@ -124,19 +127,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
     dalvik.vm.checkjni=false
 
-# KSM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1
-
 # MTP
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
-# GPS
-$(call inherit-product, device/common/gps/gps_eu_supl.mk)
+# Override phone-hdpi-512-dalvik-heap to match value on stock
+# - helps pass CTS com.squareup.okhttp.internal.spdy.Spdy3Test#tooLargeDataFrame)
+# (property override must come before included property)
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapgrowthlimit=56m \
 
 # Dalvik heap config
-include frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk
+include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise

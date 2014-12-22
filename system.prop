@@ -1,9 +1,13 @@
 #
 # system.prop for i9060
 #
+persist.brcm.log=none
+persist.brcm.cp_crash=none
+persist.brcm.ap_crash=none
 
 rild.libpath=/system/lib/libbrcm_ril.so
 #rild.libargs=-d /dev/ttyS0
+ro.sf.lcd_density=240
 ro.lcd_brightness=160
 ro.lcd_min_brightness=20
 
@@ -30,3 +34,4 @@ brcm.hwc.no-hdmi-trans=1
 
 ro.ril.hsxpa=2
 ro.ril.gprsclass=10
+ro.com.google.gmsversion=4.1_r4

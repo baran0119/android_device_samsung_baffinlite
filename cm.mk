@@ -1,6 +1,3 @@
-## Specify phone tech before including full_phone
-$(call inherit-product, vendor/cm/config/gsm.mk)
-
 # Release name
 PRODUCT_RELEASE_NAME := GalaxyGrandNeo
 
@@ -16,4 +13,4 @@ PRODUCT_NAME := cm_baffinlite
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_MODEL := GT-I9060
-PRODUCT_CHARACTERISTICS := phone
+
