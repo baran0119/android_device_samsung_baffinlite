@@ -21,13 +21,13 @@ void
 healthd_board_init(struct healthd_config *config)
 {
     // battery needs to be used instead of bcm59056_charger
-    config->batteryStatusPath      = "/sys/class/power_supply/battery/status";
+    config->batteryCapacityPath    = "/sys/class/power_supply/battery/capacity";
     config->batteryHealthPath      = "/sys/class/power_supply/battery/health";
     config->batteryPresentPath     = "/sys/class/power_supply/battery/present";
-    config->batteryCapacityPath    = "/sys/class/power_supply/battery/capacity";
-    config->batteryVoltagePath     = "/sys/class/power_supply/battery/voltage_now";
+    config->batteryStatusPath      = "/sys/class/power_supply/battery/status";
     config->batteryTemperaturePath = "/sys/class/power_supply/battery/temp";
     config->batteryTechnologyPath  = "/sys/class/power_supply/battery/technology";
+    config->batteryVoltagePath     = "/sys/class/power_supply/battery/voltage_now";
 }
 
 int
