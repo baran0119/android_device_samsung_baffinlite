@@ -33,12 +33,12 @@ PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
 
-# Prebuilt kl keymaps
+# Prebuilt kl keylayout
 PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/bcm_headset.kl:system/usr/keylayout/bcm_headset.kl \
-	device/samsung/baffinlite/bcm_keypad_v2.kl:system/usr/keylayout/bcm_keypad_v2.kl \
-	device/samsung/baffinlite/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-	device/samsung/baffinlite/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl \
+	device/samsung/baffinlite/keylayouts/bcm_headset.kl:system/usr/keylayout/bcm_headset.kl \
+	device/samsung/baffinlite/keylayouts/bcm_keypad_v2.kl:system/usr/keylayout/bcm_keypad_v2.kl \
+	device/samsung/baffinlite/keylayouts/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+	device/samsung/baffinlite/keylayouts/samsung-keypad.kl:system/usr/keylayout/samsung-keypad.kl \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -49,16 +49,12 @@ PRODUCT_PACKAGES += \
 	mkfs.f2fs \
 	setup_fs \
 
-# Usb accessory
-PRODUCT_PACKAGES += \
-	com.android.future.usb.accessory
-
 # Audio
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
 	audio.usb.default \
 	audio.r_submix.default \
-#	audio.primary.default \
+	audio.primary.default \
 
 USE_CUSTOM_AUDIO_POLICY := 1
 
@@ -69,12 +65,21 @@ PRODUCT_PACKAGES += \
 
 # Device-specific packages
 PRODUCT_PACKAGES += \
+	libsecril-client \
+	libsecril-client-sap \
 	SamsungServiceMode \
 	Torch \
 
+# Gapps
+include device/samsung/baffinlite/gapps.mk
+
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1
+	ro.ksm.default=1
+
+# Usb accessory
+PRODUCT_PACKAGES += \
+	com.android.future.usb.accessory
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
@@ -117,39 +122,38 @@ PRODUCT_PACKAGES += \
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=190 \
-    wifi.interface=wlan0 \
-    mobiledata.interfaces=rmnet0 \
-    ro.telephony.ril_class=SamsungBCMRIL \
-    ro.zygote.disable_gl_preload=true \
-    ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
-    persist.radio.multisim.config=none \
-    ro.telephony.call_ring.multiple=0 \
-    ro.telephony.call_ring=0 \
+	ro.sf.lcd_density=190 \
+	wifi.interface=wlan0 \
+	mobiledata.interfaces=rmnet0 \
+	ro.telephony.ril_class=SamsungBCMRIL \
+	ro.zygote.disable_gl_preload=true \
+	ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc \
+	persist.radio.multisim.config=none \
+	persist.sys.root_access=3 \
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.locationfeatures=1 \
-    ro.com.google.networklocation=1
+	ro.com.google.locationfeatures=1 \
+	ro.com.google.networklocation=1
 
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
 # before they have a chance to cause problems.
 # Default=true for development builds, set by android buildsystem.
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.kernel.android.checkjni=0 \
-    dalvik.vm.checkjni=false
+	ro.kernel.android.checkjni=0 \
+	dalvik.vm.checkjni=false
 
 # MTP
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+	persist.sys.usb.config=mtp
 
 # Override phone-hdpi-512-dalvik-heap to match value on stock
 # - helps pass CTS com.squareup.okhttp.internal.spdy.Spdy3Test#tooLargeDataFrame)
 # (property override must come before included property)
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=56m \
+	dalvik.vm.heapgrowthlimit=56m \
 
 # Dalvik heap config
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
