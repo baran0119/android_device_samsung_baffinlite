@@ -8,7 +8,6 @@ TARGET_OTA_ASSERT_DEVICE := baffinlite,i9060,gt-i9060,GT-I9060,gt-i9060l,GT-I906
 
 # Audio
 BOARD_USES_GENERIC_AUDIO := false
-BOARD_USES_AUDIO_LEGACY := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -47,7 +46,7 @@ WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin nv
 WIFI_DRIVER_MODULE_AP_ARG   := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                   := 802_11_ABG
 BOARD_NO_WIFI_HAL           := true
-BOARD_HAVE_SAMSUNG_WIFI := true
+BOARD_HAVE_SAMSUNG_WIFI     := true
 
 # Fonts
 # Include an expanded selection of noto-fonts (external/noto-fonts)
@@ -57,7 +56,7 @@ EXTENDED_FONT_FOOTPRINT := true
 USE_OPENGL_RENDERER := true
 BOARD_USE_MHEAP_SCREENSHOT := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS -DEGL_NEEDS_FNW -DSAMSUNG_CODEC_SUPPORT -DJAVA_HWC
+COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_LEGACY -DNEEDS_VECTORIMPL_SYMBOLS -DEGL_NEEDS_FNW -DSAMSUNG_CODEC_SUPPORT -DJAVA_HWC
 TARGET_USES_ION := true
 HWUI_COMPILE_FOR_PERF := true
 
@@ -69,12 +68,15 @@ MALLOC_IMPL := dlmalloc
 
 # Kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_baffinlite_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/baffinlite
+TARGET_KERNEL_SOURCE := kernel/samsung/baffinlite2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_KERNEL_CMDLINE := 
 BOARD_KERNEL_BASE := 0x81e00000
 BOARD_KERNEL_PAGESIZE := 4096
+
+# libwvm.so
+COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 
 # OMX
 BOARD_HAVE_CODEC_SUPPORT := SAMSUNG_CODEC_SUPPORT
@@ -103,14 +105,15 @@ TARGET_CPU_VARIANT := cortex-a7
 TARGET_CPU_SMP := true
 TARGET_BOOTLOADER_BOARD_NAME := java
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/baffinlite/include
-BOARD_VENDOR := samsung
 
 # Resolution
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
 # RIL
+BOARD_VENDOR := samsung
 BOARD_RIL_CLASS := ../../../device/samsung/baffinlite/ril/
+PRODUCT_PACKAGES += com.android.services.telephony.common
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/samsung/baffinlite/recovery.fstab
