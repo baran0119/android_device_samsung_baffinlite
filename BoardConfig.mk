@@ -6,9 +6,6 @@ USE_CAMERA_STUB := true
 # Assert
 TARGET_OTA_ASSERT_DEVICE := baffinlite,i9060,gt-i9060,GT-I9060,gt-i9060l,GT-I9060L,
 
-# Audio
-BOARD_USES_GENERIC_AUDIO := false
-
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
