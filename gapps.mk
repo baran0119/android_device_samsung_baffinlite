@@ -2,8 +2,6 @@ GAPPS_ROOT := vendor/google/gapps
 
 PRODUCT_COPY_FILES += \
 	$(GAPPS_ROOT)/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk \
-	$(GAPPS_ROOT)/app/Videos/Videos.apk:system/app/Videos/Videos.apk \
-	$(GAPPS_ROOT)/app/Videos/lib/arm/libWVphoneAPI.so:system/app/Videos/lib/arm/libWVphoneAPI.so \
 	$(GAPPS_ROOT)/app/Street/Street.apk:system/app/Street/Street.apk \
 	$(GAPPS_ROOT)/app/Maps/lib/arm/libgmm-jni.so:system/app/Maps/lib/arm/libgmm-jni.so \
 	$(GAPPS_ROOT)/app/Maps/lib/arm/libcrashreporter.so:system/app/Maps/lib/arm/libcrashreporter.so \
