@@ -1,6 +1,3 @@
-ifeq ($(TARGET_DEVICE),baffinlite)
-ifeq ($(TARGET_BOARD_PLATFORM),java)
-
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -25,5 +22,3 @@ LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)
 
-endif
-endif
