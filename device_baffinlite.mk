@@ -56,8 +56,6 @@ PRODUCT_PACKAGES += \
 	audio.r_submix.default \
 	audio.primary.default \
 
-USE_CUSTOM_AUDIO_POLICY := 1
-
 # Charger
 PRODUCT_PACKAGES += \
 	charger \
