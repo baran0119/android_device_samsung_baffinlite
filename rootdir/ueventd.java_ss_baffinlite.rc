@@ -68,4 +68,11 @@
 # /dev/sec_user_dump        0660   system     shell  
 
 # SYSTEM Status
-/dev/block/mmcblk0p8        0660   system     root  
+/dev/block/mmcblk0p8        0660   system     root
+
+/dev/block/mmcblk0	  0660 	 system     root
+/dev/mem		  0660	 system     root
+
+/dev/ttyGS0		  0660	 system     system
+/dev/snd/controlC0	  0660	 system     audio
+
