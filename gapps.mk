@@ -7,8 +7,8 @@ PRODUCT_COPY_FILES += \
 	$(GAPPS_ROOT)/app/Maps/lib/arm/libcrashreporter.so:system/app/Maps/lib/arm/libcrashreporter.so \
 	$(GAPPS_ROOT)/app/Maps/Maps.apk:system/app/Maps/Maps.apk \
 	$(GAPPS_ROOT)/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk:system/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk \
-	$(GAPPS_ROOT)/app/GoogleTTS/lib/arm/libpatts_engine_jni_api.so:system/app/GoogleTTS/lib/arm/libpatts_engine_jni_api.so \
-	$(GAPPS_ROOT)/app/GoogleTTS/lib/arm/libspeexwrapper.so:system/app/GoogleTTS/lib/arm/libspeexwrapper.so \
+	$(GAPPS_ROOT)/app/GoogleTTS/lib/arm/libpatts_engine_jni_api_ub.210303130.so:system/app/GoogleTTS/lib/arm/libpatts_engine_jni_api_ub.210303130.so \
+	$(GAPPS_ROOT)/app/GoogleTTS/lib/arm/libspeexwrapper_ub.210303130.so:system/app/GoogleTTS/lib/arm/libspeexwrapper_ub.210303130.so \
 	$(GAPPS_ROOT)/app/GoogleTTS/GoogleTTS.apk:system/app/GoogleTTS/GoogleTTS.apk \
 	$(GAPPS_ROOT)/app/Gmail2/Gmail2.apk:system/app/Gmail2/Gmail2.apk \
 	$(GAPPS_ROOT)/app/YouTube/lib/arm/libcronet.so:system/app/YouTube/lib/arm/libcronet.so \
@@ -44,5 +44,6 @@ PRODUCT_COPY_FILES += \
 	$(GAPPS_ROOT)/priv-app/GmsCore/lib/arm/libAppDataSearch.so:system/priv-app/GmsCore/lib/arm/libAppDataSearch.so \
 	$(GAPPS_ROOT)/priv-app/GmsCore/lib/arm/libconscrypt_gmscore_jni.so:system/priv-app/GmsCore/lib/arm/libconscrypt_gmscore_jni.so \
 	$(GAPPS_ROOT)/priv-app/GmsCore/lib/arm/libgms-ocrclient.so:system/priv-app/GmsCore/lib/arm/libgms-ocrclient.so \
+	$(GAPPS_ROOT)/priv-app/GmsCore/lib/arm/libsslwrapper_jni.so:system/priv-app/GmsCore/lib/arm/libsslwrapper_jni.so \
 	$(GAPPS_ROOT)/priv-app/GmsCore/GmsCore.apk:system/priv-app/GmsCore/GmsCore.apk \
 
