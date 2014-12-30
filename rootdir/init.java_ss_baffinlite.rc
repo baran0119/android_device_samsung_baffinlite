@@ -25,6 +25,11 @@ on init
     mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
     mkdir /storage/usbdisk0 0700 root root
 
+    # Support for USB disk
+    symlink /storage/usbdisk0 /usbdisk
+    symlink /storage/usbdisk0 /mnt/usbdisk
+
+
 # KSM
     write /sys/kernel/mm/ksm/pages_to_scan 100
     write /sys/kernel/mm/ksm/sleep_millisecs 500
@@ -685,13 +690,6 @@ service java-drm /system/bin/drmserver
 #    group drm system inet drmrpc
 # ]
 
-#at_distributor for making file for factory.
-service at_distributor /system/bin/at_distributor
-    class main
-    user root
-    group root
-    oneshot
-
 # RILD
 service java-ril-daemon /system/bin/rild
     class main
@@ -796,14 +794,6 @@ service gpsd /system/bin/glgps -c /system/etc/gps/glconfig.xml
     class late_start
     user gps
     group system root inet radio wifi sdcard_rw
-
-# Run ATX over UART
-service console_atx /system/bin/atx -l -d
-    class main
-    console
-#    oneshot
-    user system
-    group vpn net_admin net_raw radio system sdcard_rw log mount
 
 on property:ro.debuggable=1
     start console
