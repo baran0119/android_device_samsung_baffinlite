@@ -74,11 +74,6 @@ include device/samsung/baffinlite/gapps.mk
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.ksm.default=1
 
-# Terminal
-PRODUCT_COPY_FILES += \
-	device/samsung/baffinlite/prebuilt/app/jackpal.androidterm/lib/arm/libjackpal-androidterm4.so:system/app/jackpal.androidterm/lib/arm/libjackpal-androidterm4.so \
-	device/samsung/baffinlite/prebuilt/app/jackpal.androidterm/Term.apk:system/app/jackpal.androidterm/Term.apk \
-
 # Usb accessory
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
